@@ -8,18 +8,38 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppState>();
+    List<IconData> icons = [
+      Icons.map,
+      Icons.view_list,
+      Icons.description,
+      Icons.settings
+    ];
+
+    List<IconData> icons_outlined = [
+      Icons.map_outlined,
+      Icons.view_list_outlined,
+      Icons.description_outlined,
+      Icons.settings_outlined
+    ];
+
+    List<String> icons_labels = [
+      "Kaart",
+      "Locaties",
+      "Notities",
+      "Instellingen"
+    ];
+
     return NavigationBar(
       selectedIndex: appState.pageIndex,
       onDestinationSelected: (int i) {
         appState.setCurrentPage(i);
       },
-      destinations: const [
-        NavigationDestination(icon: Icon(Icons.map), label: "Kaart"),
-        NavigationDestination(icon: Icon(Icons.list), label: "Locaties"),
-        NavigationDestination(icon: Icon(Icons.notes), label: "Notities"),
-        NavigationDestination(
-            icon: Icon(Icons.settings), label: "Instellingen"),
-      ],
+      destinations: icons_labels.asMap().entries.map((v) {
+        var icon = (v.key == appState.pageIndex)
+            ? icons[v.key]
+            : icons_outlined[v.key];
+        return NavigationDestination(icon: Icon(icon), label: v.value);
+      }).toList(),
     );
   }
 }

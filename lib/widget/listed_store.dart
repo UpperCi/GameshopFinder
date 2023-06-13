@@ -7,6 +7,13 @@ class ListedStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(store.name);
+    return Row(children: [
+      Expanded(
+          child: Material(
+              child: ListTile(
+                  title: Text(store.name),
+                  subtitle: Text(store.email),
+                  trailing: const Icon(Icons.arrow_forward))))
+    ]);
   }
 }

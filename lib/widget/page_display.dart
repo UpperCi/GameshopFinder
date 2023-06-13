@@ -19,7 +19,7 @@ class PageDisplay extends StatelessWidget {
         page = const Icon(Icons.tsunami);
         break;
       case 2:
-        page = const ListView();
+        page = const StoresList();
         break;
       default:
         page = const Placeholder();
@@ -28,8 +28,8 @@ class PageDisplay extends StatelessWidget {
   }
 }
 
-class ListView extends StatelessWidget {
-  const ListView({super.key});
+class StoresList extends StatelessWidget {
+  const StoresList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +39,13 @@ class ListView extends StatelessWidget {
         future: stores,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListedStore(store: snapshot.data!.first);
+            return ListView(
+                padding: const EdgeInsets.all(8),
+                children: snapshot.data!
+                    .map((store) => ListedStore(store: store))
+                    .toList());
           }
-          return Text("Error");
+          return const Text("Loading data...");
         });
   }
 }
