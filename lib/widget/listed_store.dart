@@ -7,13 +7,24 @@ class ListedStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final adressRe = RegExp(r'(\n|\r|, )+');
+    final adressData = store.adress.split(adressRe);
+    // TODO: show street instead of place when store is close by
+    // final street = adressData[0];
+    final place = adressData[1];
     return Row(children: [
       Expanded(
-          child: Material(
+          child: InkWell(
+              onTap: () {
+                print("TODO");
+              },
               child: ListTile(
                   title: Text(store.name),
-                  subtitle: Text(store.email),
-                  trailing: const Icon(Icons.arrow_forward))))
+                  subtitle: Text(place),
+                  leading: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Icon(Icons.location_pin), Text("5.1km")]),
+                  trailing: null)))
     ]);
   }
 }

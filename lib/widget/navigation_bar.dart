@@ -15,14 +15,14 @@ class NavBar extends StatelessWidget {
       Icons.settings
     ];
 
-    List<IconData> icons_outlined = [
+    List<IconData> iconsOutlined = [
       Icons.map_outlined,
       Icons.view_list_outlined,
       Icons.description_outlined,
       Icons.settings_outlined
     ];
 
-    List<String> icons_labels = [
+    List<String> iconsLabels = [
       "Kaart",
       "Locaties",
       "Notities",
@@ -34,10 +34,9 @@ class NavBar extends StatelessWidget {
       onDestinationSelected: (int i) {
         appState.setCurrentPage(i);
       },
-      destinations: icons_labels.asMap().entries.map((v) {
-        var icon = (v.key == appState.pageIndex)
-            ? icons[v.key]
-            : icons_outlined[v.key];
+      destinations: iconsLabels.asMap().entries.map((v) {
+        var icon =
+            (v.key == appState.pageIndex) ? icons[v.key] : iconsOutlined[v.key];
         return NavigationDestination(icon: Icon(icon), label: v.value);
       }).toList(),
     );

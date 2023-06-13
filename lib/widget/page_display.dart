@@ -40,7 +40,7 @@ class StoresList extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(4),
                 children: snapshot.data!
                     .map((store) => ListedStore(store: store))
                     .toList());
