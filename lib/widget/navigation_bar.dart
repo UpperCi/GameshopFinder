@@ -7,11 +7,11 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var pageRouterState = context.watch<AppState>();
+    var appState = context.watch<AppState>();
     return NavigationBar(
-      selectedIndex: pageRouterState.pageIndex,
+      selectedIndex: appState.pageIndex,
       onDestinationSelected: (int i) {
-        pageRouterState.setCurrentPage(i);
+        appState.setCurrentPage(i);
       },
       destinations: const [
         NavigationDestination(icon: Icon(Icons.map), label: "Kaart"),

@@ -42,7 +42,7 @@ class App extends StatelessWidget {
 class AppState extends ChangeNotifier {
   var pageIndex = 0;
   var api = StoresApi();
-  List<Store>? cachedStores;
+  List<Store>? _cachedStores;
 
   void setCurrentPage(int newIndex) {
     pageIndex = newIndex;
@@ -50,12 +50,12 @@ class AppState extends ChangeNotifier {
   }
 
   Future<List<Store>> getStores() async {
-    if (cachedStores == null) {
+    if (_cachedStores == null) {
       var stores = await api.fetchStores();
-      cachedStores = stores;
+      _cachedStores = stores;
       return stores;
     } else {
-      return Future<List<Store>>.value(cachedStores);
+      return Future<List<Store>>.value(_cachedStores);
     }
   }
 }
