@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stores/page_router.dart';
+import 'package:stores/main.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var pageRouterState = context.watch<PageRouterState>();
+    var pageRouterState = context.watch<AppState>();
     return NavigationBar(
       selectedIndex: pageRouterState.pageIndex,
       onDestinationSelected: (int i) {

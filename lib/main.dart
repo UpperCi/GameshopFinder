@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stores/model/store.dart';
 
-import 'page_router.dart';
-import 'navigation_bar.dart';
-import 'page_display.dart';
+import 'widget/navigation_bar.dart';
+import 'widget/page_display.dart';
+import 'package:stores/service/stores_api.dart';
 
 void main() {
   runApp(const Stores());
@@ -31,7 +32,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => PageRouterState(),
+        create: (context) => AppState(),
         child: const Scaffold(
             bottomNavigationBar: NavBar(),
             body: SafeArea(child: PageDisplay())));
@@ -40,9 +41,21 @@ class App extends StatelessWidget {
 
 class AppState extends ChangeNotifier {
   var pageIndex = 0;
+  var api = StoresApi();
+  List<Store>? cachedStores;
 
   void setCurrentPage(int newIndex) {
     pageIndex = newIndex;
     notifyListeners();
+  }
+
+  Future<List<Store>> getStores() async {
+    if (cachedStores == null) {
+      var stores = await api.fetchStores();
+      cachedStores = stores;
+      return stores;
+    } else {
+      return Future<List<Store>>.value(cachedStores);
+    }
   }
 }

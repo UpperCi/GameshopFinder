@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stores/page_router.dart';
+import 'package:stores/main.dart';
 
 class PageDisplay extends StatelessWidget {
   const PageDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var pageRouterState = context.watch<PageRouterState>();
+    var pageRouterState = context.watch<AppState>();
     Widget page;
     switch (pageRouterState.pageIndex) {
       case 0:
