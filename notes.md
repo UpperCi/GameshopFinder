@@ -26,3 +26,10 @@ _Kan worden gebruikt als overzicht spellenwinkels Nederland._
 Aanbevelingen
 - Material 3
 - Mapbox
+
+## Week 7
+
+Textinput
+
+Buiten meertaligheid ook rekening houden met localisatie?
+- Kilometers / Miles

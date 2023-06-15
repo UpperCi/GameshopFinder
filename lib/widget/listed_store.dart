@@ -16,7 +16,13 @@ class ListedStore extends StatelessWidget {
       Expanded(
           child: InkWell(
               onTap: () {
-                print("TODO");
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Column(children: [
+                    Text(store.name),
+                    Text(store.adress),
+                    Text(store.website ?? "No website")
+                  ]),
+                ));
               },
               child: ListTile(
                   title: Text(store.name),

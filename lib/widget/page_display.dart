@@ -16,10 +16,18 @@ class PageDisplay extends StatelessWidget {
         page = const Text("First page");
         break;
       case 1:
-        page = const Icon(Icons.tsunami);
+        page = const StoresList();
         break;
       case 2:
-        page = const StoresList();
+        page = const Column(children: [
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 12),
+              child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.store),
+                      border: OutlineInputBorder(),
+                      hintText: "store name"))),
+        ]);
         break;
       default:
         page = const Placeholder();
