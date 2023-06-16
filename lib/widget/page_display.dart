@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:stores/main.dart';
 import 'package:stores/model/store.dart';
 import 'package:stores/widget/listed_store.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 
 class PageDisplay extends StatelessWidget {
   const PageDisplay({super.key});
@@ -13,7 +14,7 @@ class PageDisplay extends StatelessWidget {
     Widget page;
     switch (pageRouterState.pageIndex) {
       case 0:
-        page = const Text("First page");
+        page = const MapView();
         break;
       case 1:
         page = const StoresList();
@@ -55,5 +56,18 @@ class StoresList extends StatelessWidget {
           }
           return const Text("Loading data...");
         });
+  }
+}
+
+class MapView extends StatelessWidget {
+  const MapView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const ACCESS_TOKEN = String.fromEnvironment("ACCESS_TOKEN");
+
+    return MapboxMap(
+        accessToken: ACCESS_TOKEN,
+        initialCameraPosition: const CameraPosition(target: LatLng(0.0, 0.0)));
   }
 }

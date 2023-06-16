@@ -18,7 +18,7 @@ class Stores extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         useMaterial3: true,
       ),
       home: const App(),
@@ -31,11 +31,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
     return ChangeNotifierProvider(
         create: (context) => AppState(),
-        child: const Scaffold(
-            bottomNavigationBar: NavBar(),
-            body: SafeArea(child: PageDisplay())));
+        child: Scaffold(
+            bottomNavigationBar: const NavBar(),
+            appBar: AppBar(
+              title: Text(style: TextStyle(color: colors.onPrimary), "Stores"),
+              backgroundColor: colors.primary,
+            ),
+            body: const SafeArea(child: PageDisplay())));
   }
 }
 
